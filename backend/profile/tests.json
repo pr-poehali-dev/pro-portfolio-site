@@ -1,0 +1,21 @@
+{
+  "tests": [
+    {
+      "name": "Update user nickname",
+      "method": "PUT",
+      "path": "/",
+      "body": {
+        "user_id": 1,
+        "nickname": "NewNickname"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true,
+        "user": {
+          "nickname": "string"
+        }
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
