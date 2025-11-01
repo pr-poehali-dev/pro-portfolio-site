@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Textarea } from '@/components/ui/textarea'
 import Icon from '@/components/ui/icon'
@@ -492,13 +492,27 @@ export default function Index() {
             </DialogDescription>
           </DialogHeader>
           
-          <Tabs value={authMode} onValueChange={(v) => setAuthMode(v as 'login' | 'register')}>
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="login">Вход</TabsTrigger>
-              <TabsTrigger value="register">Регистрация</TabsTrigger>
-            </TabsList>
+          <div className="space-y-4">
+            <div className="flex gap-2">
+              <Button 
+                type="button"
+                variant={authMode === 'login' ? 'default' : 'outline'}
+                onClick={() => setAuthMode('login')}
+                className="flex-1"
+              >
+                Вход
+              </Button>
+              <Button 
+                type="button"
+                variant={authMode === 'register' ? 'default' : 'outline'}
+                onClick={() => setAuthMode('register')}
+                className="flex-1"
+              >
+                Регистрация
+              </Button>
+            </div>
             
-            <form onSubmit={handleAuth} className="space-y-4 mt-4">
+            <form onSubmit={handleAuth} className="space-y-4">
               <div>
                 <Label htmlFor="username">Логин</Label>
                 <Input 
@@ -524,7 +538,7 @@ export default function Index() {
                 {authMode === 'login' ? 'Войти' : 'Зарегистрироваться'}
               </Button>
             </form>
-          </Tabs>
+          </div>
         </DialogContent>
       </Dialog>
 
